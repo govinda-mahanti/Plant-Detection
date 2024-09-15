@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+</head>
+<style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+} 
+ 
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: black;
+        color: white;
+    }
+    body>h1{
+        margin-top: 50px;
+    }
+    .from{
+        margin-top: 40px;
+    }
+    .plantImage{
+        display: flex;
+        gap: 100px;
+    }
+    .leftimg, .rightimg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .leftimg>h3, .rightimg>h3{
+        margin: 20px;
+        
+    }
+    .leftimg>h3>span{
+        font-size: 20px;
+        color: yellow;
+    }
+</style>
+<body>
+    <h1>Upload an Image for Classification</h1>
+
+    <form class="from" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <div class="plantImage">
+
+        {% if class_name %}
+        <div class="leftimg">
+            <h3>Predicted Plant Name: <span>{{ plant_name }}</span></h3>
+            <img src="{{ uploaded_image }}" alt="Uploaded Image" style="width: 400px;">
+        </div>
+
+        <div class="rightimg">
+            <h3>Annotated Image (with Bounding Boxes):</h3>
+            <img src="{{ annotated_image }}" alt="Annotated Image" style="width: 400px;">
+        </div>    
+        
+        
+        {% endif %}
+    </div>
+</body>
+</html>
